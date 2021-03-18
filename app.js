@@ -22,7 +22,7 @@ app.use((req, res, next) => {
 
 app.use(express.static(__dirname + '/public/frontend/'));
 
-app.get('/', (req,res)=>{
+app.get('/hola', (req,res)=>{
   res.status(200).send('backend-api');
 });
 
