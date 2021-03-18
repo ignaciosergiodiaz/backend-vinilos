@@ -27,8 +27,6 @@ app.use(express.urlencoded({
 }));
 app.use(express.json());
 
-//configurar cabeceras http
-
 //rutas base
 app.use('/api', user_routes);
 app.use('/api', artist_routes);
