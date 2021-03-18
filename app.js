@@ -35,7 +35,4 @@ app.use('/api', artist_routes);
 app.use('/api', album_routes);
 app.use('/api', song_routes);
 
-//CORS
-
-
 module.exports = app;
