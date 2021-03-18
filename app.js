@@ -22,6 +22,10 @@ app.use((req, res, next) => {
 
 app.use(express.static(__dirname + '/public/frontend/'));
 
+app.get('/', (req,res)=>{
+  res.status(200).send('backend-api');
+});
+
 app.use(express.urlencoded({
     extended: false
 }));
