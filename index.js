@@ -7,7 +7,9 @@ mongoose.Promise = global.Promise;
 mongoose.set('useFindAndModify', false);
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb+srv://admin:admin1234@cluster0.zojpg.mongodb.net/curso_mean2?retryWrites=true&w=majority', {
+const db = 'mongodb+srv://admin:admin1234@cluster0.zojpg.mongodb.net/curso_mean2?retryWrites=true&w=majority';
+
+mongoose.connect('mongodb://localhost:27017/cursomean', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 
