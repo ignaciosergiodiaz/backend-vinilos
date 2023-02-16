@@ -1,4 +1,4 @@
-' use strict ';
+'use strict';
 
 var bcrypt = require('bcrypt-nodejs');
 var User = require('../models/user');
@@ -136,23 +136,25 @@ function uploadImage(req, res) {
 
 		var file_path = req.files.image.path;
 		var file_split = file_path.split('/');
-		var file_name = file_split[10];
-		var ext_split = file_name.split('.');
-		var file_ext = ext_split[1];
 
-		if (file_ext == 'png' || file_ext == 'jpg' || file_ext == 'gif' || file_ext == 'jpeg') {
-			User.findByIdAndUpdate(userId, {
-				image: file_name
-			}, (err, userUpdated) => {
+		var file_name = file_split[9];
+		/* Obtener la extención */
+		var ext_split = file_name.split('.');
+		var file_ext = ext_split[0];
+		var extencion_archivo = ext_split[1];
+
+		console.log(ext_split)
+		console.log(file_name)
+		console.log(file_ext)
+		console.log(file_split)
+		console.log(extencion_archivo)
+
+		if (extencion_archivo == 'png' || extencion_archivo == 'jpg' || extencion_archivo == 'gif' || extencion_archivo == 'jpeg') {
+			User.findByIdAndUpdate(userId, { image: file_name }, (err, userUpdated) => {
 				if (!userUpdated) {
-					res.status(404).send({
-						message: 'No se ha podido actualizar el usuario'
-					});
+					res.status(404).send({message: 'No se ha podido actualizar el usuario'});
 				} else {
-					res.status(200).send({
-						image: file_name,
-						user: userUpdated
-					});
+					res.status(200).send({image: file_name, user: userUpdated});
 				}
 			});
 		} else {
@@ -165,12 +167,15 @@ function uploadImage(req, res) {
 			message: 'No has subido ninguna imagen'
 		});
 	}
+
+
+
 }
 
 function getImageFile(req, res) {
 
 	var imageFile = req.params.imageFile;
-	var path_file = './../uploads/users/' + imageFile;
+	var path_file = './../uploads/users/'+imageFile;
 
 	if (fs.exists) {
 		res.sendFile(path.resolve(__dirname + path_file));

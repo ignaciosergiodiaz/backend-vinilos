@@ -159,13 +159,22 @@ function uploadFile(req, res) {
 
     if (req.files) {
 
-      var file_path = req.files.file.path;
-      var file_split = file_path.split('/');
-      var file_name = file_split[10];
-      var ext_split = file_name.split('.');
-      var file_ext = ext_split[1];
+        var file_path = req.files.image.path;
+		var file_split = file_path.split('/');
 
-        if (file_ext == 'mp3' || file_ext == 'wav' ){
+		var file_name = file_split[9];
+		/* Obtener la extención */
+		var ext_split = file_name.split('.');
+		var file_ext = ext_split[0];
+		var extencion_archivo = ext_split[1];
+
+		console.log(ext_split)
+		console.log(file_name)
+		console.log(file_ext)
+		console.log(file_split)
+		console.log(extencion_archivo)
+
+        if (extencion_archivo == 'mp3' || extencion_archivo == 'wav' ){
 
         Song.findByIdAndUpdate(songId, {file: file_name}, (err, songUpdated) => {
 
