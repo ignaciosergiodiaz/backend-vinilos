@@ -3,6 +3,7 @@
 var bcrypt = require('bcrypt-nodejs');
 var User = require('../models/user');
 var jwt = require('../services/jwt');
+
 var path = require('path');
 var fs = require('fs');
 
@@ -67,6 +68,7 @@ function saveUser(req, res) {
 function loginUser(req, res) {
 
 	var params = req.body;
+	
 	var email = params.email;
 	var password = params.password;
 
@@ -74,7 +76,7 @@ function loginUser(req, res) {
 		email: email.toLowerCase()
 	}, (err, user) => {
 		if (err) {
-			res.status(500).send({message: ' Error en la petición'});
+			res.status(500).send({message: 'Error en la petición'});
 		} else {
 			if (!user) {
 				res.status(404).send({message: 'El usuario no existe'});
@@ -96,6 +98,7 @@ function loginUser(req, res) {
 			}
 		}
 	});
+
 }
 
 function updateUser(req, res) {

@@ -7,10 +7,7 @@ var secret = 'clave_secreta_curso';
 exports.ensureAuth = function (req, res, next) {
 
     if (!req.headers.authorization) {
-        return res.status(403)
-            .send({
-                message: 'La petición no tiene la cabecera de autenticación'
-            });
+        return res.status(403).send({ message: 'La petición no tiene la cabecera de autenticación'});
     }
 
     var token = req.headers.authorization.replace(/['"]+/g, '');

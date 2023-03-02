@@ -44,24 +44,26 @@ function saveAlbum(req, res) {
   album.image = 'null';
   album.artist = params.artist;
 
-  album.save((err, album) => {
+  album.save((err, albumStored) => {
     if (err) {
       res.status(500).send({
         message: 'Error en el servidor'
       });
     } else {
-      if (!album) {
+      if (!albumStored) {
         res.status(404).send({
           message: 'No se ha guardado el album'
         });
       } else {
         res.status(201).send({
-          album
+          album: albumStored
         });
       }
     }
   });
 }
+
+
 
 function getAlbums(req, res) {
 
@@ -122,7 +124,8 @@ function updateAlbum(req, res) {
         });
       } else {
         res.status(200).send({
-          message: 'El album ha sido actualizado'
+          message: 'El album ha sido actualizado',
+          album:albumUpdated
         });
       }
     }

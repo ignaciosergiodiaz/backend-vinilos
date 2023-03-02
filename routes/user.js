@@ -6,6 +6,7 @@ var UserController = require('../controllers/user');
 var api = express.Router();
 
 var multipart = require('connect-multiparty');
+
 var md_upload = multipart({
     uploadDir: __dirname + './../uploads/users'
 });
