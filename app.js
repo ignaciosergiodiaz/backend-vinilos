@@ -23,12 +23,13 @@ app.use((req, res, next) => {
 app.use(express.static(__dirname + '/public/frontend/'));
 
 app.get('/hola', (req,res)=>{
-  res.status(200).send('backend-api');
+  res.status(200).send('este es un hola mundo de prueba');
 });
 
 app.use(express.urlencoded({
     extended: false
 }));
+
 app.use(express.json());
 
 //rutas base

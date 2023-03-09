@@ -41,9 +41,7 @@ function getSongs(req, res) {
     if (!albumId) {
         var find = Song.find({}).sort('number');
     } else {
-        var find = Song.find({
-            album: albumId
-        }).sort('number');
+        var find = Song.find({ album: albumId}).sort('number');
     }
 
     find.populate({
@@ -54,18 +52,16 @@ function getSongs(req, res) {
         }
     }).exec((err, songs) => {
         if (err) {
-            res.status(500).send({
-                message: 'Error en la aplicación'
+             return res.status(500).send({
+                message: 'Error en la peticion'
             });
         } else {
             if (!songs) {
-                res.status(404).send({
+             return    res.status(404).send({
                     message: 'No hay canciones'
                 });
             } else {
-                res.status(200).send({
-                    songs: songs
-                });
+             return    res.status(200).send({ songs: songs});
             }
         }
     });
@@ -159,7 +155,7 @@ function uploadFile(req, res) {
 
     if (req.files) {
 
-        var file_path = req.files.image.path;
+        var file_path = req.files.file.path;
 		var file_split = file_path.split('/');
 
 		var file_name = file_split[9];
