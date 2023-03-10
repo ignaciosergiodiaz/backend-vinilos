@@ -7,6 +7,8 @@ var album_routes = require('./routes/album');
 var song_routes = require('./routes/song');
 var cors = require('cors');
 
+var path = require('path');
+
 var app = express();
 app.use(cors());
 
@@ -20,7 +22,7 @@ app.use((req, res, next) => {
 
 //cargar rutas
 
-app.use(express.static(__dirname + '/public/frontend/'));
+
 
 app.get('/hola', (req,res)=>{
   res.status(200).send('este es un hola mundo de prueba');
@@ -33,6 +35,11 @@ app.use(express.urlencoded({
 app.use(express.json());
 
 //rutas base
+
+app.use(express.static(path.join (__dirname, 'client')));
+
+
+
 app.use('/api', user_routes);
 app.use('/api', artist_routes);
 app.use('/api', album_routes);
