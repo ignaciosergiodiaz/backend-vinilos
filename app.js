@@ -38,8 +38,6 @@ app.use(express.json());
 
 app.use(express.static(path.join (__dirname, 'client')));
 
-
-
 app.use('/api', user_routes);
 app.use('/api', artist_routes);
 app.use('/api', album_routes);
