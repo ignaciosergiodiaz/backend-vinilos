@@ -36,11 +36,15 @@ app.use(express.json());
 
 //rutas base
 
-app.use(express.static(path.join (__dirname, 'client')));
+app.use('/', express.static('client', {redirect:false}));
 
 app.use('/api', user_routes);
 app.use('/api', artist_routes);
 app.use('/api', album_routes);
 app.use('/api', song_routes);
+
+app.get('*', function(req,res,next){
+  res.sendFile(path.resolve('client/index.html'));
+})
 
 module.exports = app;
