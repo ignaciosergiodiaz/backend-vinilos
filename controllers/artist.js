@@ -119,9 +119,10 @@ function uploadImage(req, res) {
 
     if(req.files){
 
-        var file_path = req.files.image.path;
+        
+		var file_path = req.files.image.path;
 		var file_split = file_path.split('/');
-		var file_name = file_split[6];
+		var file_name = file_split[9];
 
 		var ext_split = file_name.split('.');
 		var file_ext = ext_split[1];
@@ -130,7 +131,7 @@ function uploadImage(req, res) {
 		console.log(file_name)
 		console.log(file_ext)
 		console.log(file_split)
-
+        
 		if(file_ext  == 'png' || file_ext == 'jpg' || file_ext  == 'gif' || file_ext  == 'jpeg')
 		{
 			Artist.findByIdAndUpdate(artistId, {image: file_name}, (err, artistUpdated) => {

@@ -174,21 +174,19 @@ function uploadImage(req, res) {
   if (req.files) {
     var file_path = req.files.image.path;
 		var file_split = file_path.split('/');
+		var file_name = file_split[9];
 
-		var file_name = file_split[6];
-		/* Obtener la extención */
 		var ext_split = file_name.split('.');
-		var file_ext = ext_split[0];
-		var extencion_archivo = ext_split[1];
+		var file_ext = ext_split[1];
 
 		console.log(ext_split)
 		console.log(file_name)
 		console.log(file_ext)
 		console.log(file_split)
-		console.log(extencion_archivo)
+		
 
 
-      if (extencion_archivo == 'png' || extencion_archivo == 'jpg' || extencion_archivo == 'gif' || extencion_archivo == 'jpeg')
+      if (file_ext == 'png' || file_ext == 'jpg' || file_ext == 'gif' || file_ext == 'jpeg')
 
     {
 
